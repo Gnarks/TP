@@ -23,7 +23,6 @@ def branche(t,x,a,n):
     turnLeft(t,a)
     moveBackward(t,x)
 
-
 def koch(t,x,seuil):
     if(x<seuil):
         moveForward(t,x)
