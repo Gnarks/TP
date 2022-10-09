@@ -1,5 +1,4 @@
 dic = []
-tried_letters = []
 with open("words.txt") as file:
     for line in file:
         dic.append(line.strip())
@@ -21,6 +20,3 @@ def ask_letter(tried_letters):
     while letter in tried_letters:
         letter = input("enter another letter plz: ")
     return letter
-
-ask_word_dictionary()
-ask_letter(tried_letters)
