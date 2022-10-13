@@ -5,8 +5,6 @@ def belongs_to_dictionary(word):
             if line.strip() == word:
                 return word
 
-    
-
 def ask_word_dictionary():
     word = input("enter a word plz: ")
     while not belongs_to_dictionary(word):
