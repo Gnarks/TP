@@ -1,13 +1,11 @@
-dic = []
-with open("words.txt") as file:
-    for line in file:
-        dic.append(line.strip())
-
-        
 def belongs_to_dictionary(word):
-    if word in dic:
-        return True
-    return False
+    word.lower()
+    with open("words.txt") as file:
+        for line in file:
+            if line.strip() == word:
+                return word
+
+    
 
 def ask_word_dictionary():
     word = input("enter a word plz: ")

@@ -1,27 +1,35 @@
 from userInput import *
+from hangmantui import *
 tried_letters = []
-daWord = "aah"
+print_word = ""
+i = 10
 
-for i in range(11):
-    p2_word = input("player 2, please choose a word:")
-    while not belongs_to_dictionary(p2_word):
-        p2_word = input("player 2, please choose a word in the dictionary :")
-    if p2_word == daWord:
-        print("GG")
-        score = daWord.__len__() + i - tried_letters.__len__()
-        break
-    print(f"Turn(s) left(s): {10 -i}\n Letter(s) tried :")
-    for letter in tried_letters:
-        print(f"{letter}",end="")
-    print()
-    for char in daWord:
-        if char in tried_letters:
-            print(f"{char}", end='')
-        else:
-            print("*",end="")
-    print()
-    p1_char =input("player 1, please choose a character:")
-    while p1_char in tried_letters:
-        p1_char = input("player 1,please choos another character:")
-    tried_letters.append(p1_char)
+clear()
+word = ask_word_dictionary()
+dif_letters = 0
+clear()
+
+for char in word:
+    if not (word.count(char) >0):
+        dif_letters+=1
     
+while i >0:
+    hangman(i)
+    letter = ask_letter(tried_letters)
+    if not (letter in word):
+        i-=1
+    tried_letters.append(letter)
+
+    for char in word:
+        if char in tried_letters:
+            print_word += char
+        else:
+            print_word += "*"
+    clear()
+    for letter in tried_letters:
+        print(letter,end=" ")
+    print(f"\nmot : {print_word}")
+    if not ("*" in print_word):
+        score = dif_letters + i - len(tried_letters)
+        break
+    print_word = ""
