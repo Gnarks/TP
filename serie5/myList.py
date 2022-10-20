@@ -63,31 +63,34 @@ def reduce(f,list : list ):
         number = f(number,list[i])
     return number
 
-def insert(list, n):
-    for i,elem in enumerate(list):
+def insert(arg_list, n):
+    for i,elem in enumerate(arg_list):
         if i == 0 and n < elem:
-            list = [n] + list
+            arg_list = [n] + arg_list
             return None
         
-        elif list[i-1] <= n and n < elem:
-            list = list[:i] + [n] + list[i:]
+        elif arg_list[i-1] <= n and n < elem:
+            arg_list = arg_list[:i] + [n] + arg_list[i:]
             return None
-    list = list + [n]
-
-def insert_ex(n,list):
-    final = []
-    for i in list:
-        actuel = list[i]
-        precedent = list[i-1]
-        if i == 0 and n < actuel:
-            final.append(n)
-        elif precedent < n and n <= actuel:
-            final.append(n)
-        final.append(actuel)
+    arg_list = arg_list + [n]
     
-    if list[len(list)-1]<n:
-        final.append(n)
-    list = final
     
+def produit_matriciel(a,b):
+    if a == [] and b == []:
+        return []
+    if not (len(a) == len(b[0])):
+        return None
+    c= []
+    for i in range(len(a)):
+        c.append([])
+    for i in range(len(a)):
+        line = []
+        for j in range(len(b[0])):
+            sum = 0
+            for k in range(len(b)):
+                sum += a[i][k] * b[k][j]
+            line.append(sum)
+        c.append(line)
+    return c
 
-print(insert_ex(20,range(3)))
+print(is_prime(95647806479275528135733781266203904794419563064407))
