@@ -1,5 +1,6 @@
 from umage import * 
 from copy import deepcopy
+from math import sqrt
 
 def greyscale(mat_img):
     new_img = []
@@ -39,9 +40,28 @@ def convolution(mat_img,mat):
             new_img[i][j] = (max(min(r,255),0),(max(min(g,255),0)),(max(min(b,255),0)))
     return new_img
     
-first_im = load("pont.jpg")
+def sobel(mat_img):
+    convX = [[-1,0,1],[-2,0,2],[-1,0,1]]
+    convY = [[-1,-2,-1],[0,0,0],[1,2,1]]
+    gX = convolution(mat_img,convX)
+    gY = convolution(mat_img,convY)
+    final = deepcopy(mat_img)
+    for i in range(len(mat_img)):
+        for j in range(len(mat_img[i])):
+            
+            r = int(sqrt((gX[i][j][0])**2 + (gY[i][j][0])**2))
+            g = int(sqrt((gX[i][j][1])**2 + (gY[i][j][1])**2))
+            b = int(sqrt((gX[i][j][2])**2 + (gY[i][j][2])**2))
+            
+            final[i][j] = (r,g,b)
+    return final
+
+
+    
+    
+first_im = load("image_test.jpg")
 #grey = greyScale(first_im)
-conv = [[-1,-1,-1],[-1,8,-1],[-1,-1,-1]]
 
+sobel_test = sobel(first_im)
 
-save(convolution(first_im,conv),"test")
+save(sobel_test,"test")
