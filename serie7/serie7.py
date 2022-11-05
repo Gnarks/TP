@@ -57,7 +57,7 @@ def sobel(mat_img):
     return final
 
 
-first_im = load("image_test.jpg")
+first_im = load("panpan.jpg")
 first_im = greyScale(first_im)
 sobel_test = sobel(first_im)
 save(sobel_test,"test_contour")
