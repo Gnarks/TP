@@ -39,7 +39,7 @@ def draw_search(list,x,*functions):
     input()
 
 sys.setrecursionlimit(5000)
-l = sort.merge_sort(list(range(5000)))
+l = sort.merge_sort(list(range(5000))) # ne fonctionne pas
 print(l)
 #draw_functions(sort.merge_sort,sort.insertion_sort,sort.selection_sort,bubble_sort)
 #draw_functions(sort.merge_sort, sort.python_sort)  # impressionnant !
