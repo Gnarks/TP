@@ -11,7 +11,7 @@ def bubble_sort(t):
                 t[j],t[j+1] = t[j+1],t[j]
     
 def draw_functions(*functions):
-    input_list = [100, 200, 300, 500, 1000, 2000]
+    input_list = [100, 200, 300, 500,600,700,800,900, 1000,1200,1400,1600,1800, 2000]
     afficheur = CpuPlot(input_list)
     times = []
     for f in functions:
@@ -39,9 +39,9 @@ def draw_search(list,x,*functions):
     input()
 
 sys.setrecursionlimit(5000)
-l = sort.merge_sort(list(range(5000))) # ne fonctionne pas
-print(l)
-#draw_functions(sort.merge_sort,sort.insertion_sort,sort.selection_sort,bubble_sort)
+#l = sort.merge_sort(list(range(5000))) # ne fonctionne pas
+#print(l)
+draw_functions(sort.merge_sort,sort.insertion_sort,sort.selection_sort,bubble_sort)
 #draw_functions(sort.merge_sort, sort.python_sort)  # impressionnant !
 
 #list = range(200)
