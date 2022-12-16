@@ -28,7 +28,6 @@ def convolution(mat_img,mat):
     mid = len(mat)//2
     for i in range(len(mat_img)):
         for j in range(len(mat_img[i])):
-            #som = 0
             r,g,b = 0,0,0
             for k in range(len(mat)):
                 for m in range(len(mat[k])):
@@ -56,8 +55,25 @@ def sobel(mat_img):
             final[i][j] = (r,g,b)
     return final
 
+def is_sym(mat_img):
+    hori = True
+    verti = True
+    for i in range(len(mat_img)):
+        for j in range(len(mat_img[i])):
+            if mat_img[i][j] != mat_img[i][len(mat_img[i])-j-1]:
+                hori = False
+            if mat_img[i][j] != mat_img[len(mat_img)-i-1][j]:
+                verti = False
+    return hori,verti
 
-first_im = load("panpan.jpg")
+print(is_sym([[1,1],
+              [2,2],
+              [2,2],
+              [2,2]]))
+
+"""_summary_
+first_im = load("NYC.jpg")
 first_im = greyScale(first_im)
-sobel_test = sobel(first_im)
-save(sobel_test,"test_contour")
+sobel_test = flou(first_im,2)
+save(sobel_test,"flou.jpg")
+    """
