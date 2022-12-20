@@ -47,11 +47,9 @@ def sobel(mat_img):
     final = deepcopy(mat_img)
     for i in range(len(mat_img)):
         for j in range(len(mat_img[i])):
-            
             r = int(sqrt((gX[i][j][0])**2 + (gY[i][j][0])**2))
             g = int(sqrt((gX[i][j][1])**2 + (gY[i][j][1])**2))
             b = int(sqrt((gX[i][j][2])**2 + (gY[i][j][2])**2))
-            
             final[i][j] = (r,g,b)
     return final
 
@@ -66,14 +64,32 @@ def is_sym(mat_img):
                 verti = False
     return hori,verti
 
-print(is_sym([[1,1],
-              [2,2],
-              [2,2],
-              [2,2]]))
 
-"""_summary_
-first_im = load("NYC.jpg")
+def flou(img,r):
+    new_img = deepcopy(img)
+    total = 0
+    neighbours = []
+    for i in range(-r-1,r+1):
+        for j in range(-r-1,r+1):
+            if abs(i)+abs(j) <=2:
+                neighbours.append((i,j))
+                total+=1
+            
+    for i in range(len(img)):
+        for j in range(len(img[i])):
+            red,green,blue = 0,0,0
+            for neighbour in neighbours:
+                if not (i+neighbour[0] < 0 or i+neighbour[0]>len(img)-1 or j+neighbour[1] <0 or j+neighbour[1] >len(img[i])-1): 
+                    red+= img[i+neighbour[0]][j+neighbour[1]][0]
+                    green+= img[i+neighbour[0]][j+neighbour[1]][1]
+                    blue+= img[i+neighbour[0]][j+neighbour[1]][2]
+            new_img[i][j] = (red//total,green//total,blue//total)
+            
+    return new_img
+
+
+
+first_im = load("panpan.jpg")
 first_im = greyScale(first_im)
-sobel_test = flou(first_im,2)
-save(sobel_test,"flou.jpg")
-    """
+sobel_test = flou(first_im,1)
+save(sobel_test,"flou")
