@@ -59,9 +59,9 @@ def is_sym(mat_img):
     for i in range(len(mat_img)):
         for j in range(len(mat_img[i])):
             if mat_img[i][j] != mat_img[i][len(mat_img[i])-j-1]:
-                hori = False
-            if mat_img[i][j] != mat_img[len(mat_img)-i-1][j]:
                 verti = False
+            if mat_img[i][j] != mat_img[len(mat_img)-i-1][j]:
+                hori = False
     return hori,verti
 
 
@@ -88,8 +88,11 @@ def flou(img,r):
     return new_img
 
 
+print(is_sym([
+    [2,5,2],
+    [3,4,3]]))
 
-first_im = load("panpan.jpg")
-first_im = greyScale(first_im)
-sobel_test = flou(first_im,1)
-save(sobel_test,"flou")
+#first_im = load("panpan.jpg")
+#first_im = greyScale(first_im)
+#sobel_test = flou(first_im,1)
+#save(sobel_test,"flou")
