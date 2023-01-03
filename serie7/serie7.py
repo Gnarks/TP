@@ -74,25 +74,19 @@ def flou(img,r):
             if abs(i)+abs(j) <=2:
                 neighbours.append((i,j))
                 total+=1
-            
+    
     for i in range(len(img)):
         for j in range(len(img[i])):
             red,green,blue = 0,0,0
             for neighbour in neighbours:
-                if not (i+neighbour[0] < 0 or i+neighbour[0]>len(img)-1 or j+neighbour[1] <0 or j+neighbour[1] >len(img[i])-1): 
-                    red+= img[i+neighbour[0]][j+neighbour[1]][0]
+                if not (i+neighbour[0] < 0 or i+neighbour[0]>len(img)-1 or j+neighbour[1] <0 or j+neighbour[1] >len(img[i])-1):
+                    red+= img[i+neighbour[0]][j+neighbour[1]][0]                    
                     green+= img[i+neighbour[0]][j+neighbour[1]][1]
                     blue+= img[i+neighbour[0]][j+neighbour[1]][2]
+                    
             new_img[i][j] = (red//total,green//total,blue//total)
-            
     return new_img
 
-
-print(is_sym([
-    [2,5,2],
-    [3,4,3]]))
-
-#first_im = load("panpan.jpg")
-#first_im = greyScale(first_im)
-#sobel_test = flou(first_im,1)
-#save(sobel_test,"flou")
+first_im = load("NYC.jpg")
+sobel_test = flou(first_im,2)
+save(sobel_test,"flou")
